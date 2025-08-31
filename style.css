@@ -37,7 +37,7 @@
   <div class="corazon-latiendo">❤️</div>
 
   <!-- Lienzo para corazones flotando -->
-  <canvas id="corazones"></canvas>
+  <canvas id="corazones"></canvas> 
 
   <script src="script.js"></script>
 </body>
