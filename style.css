@@ -108,3 +108,29 @@ canvas#corazones {
   z-index: 10;
   display: block;
 }
+/* ... tu CSS actual ... */
+
+/* Mejorar la responsividad y adaptación móvil */
+@media (max-width: 600px) {
+  .container {
+    max-width: 98vw;
+    padding: 1.1rem;
+    margin: 20px auto 0 auto;
+  }
+  h1.typewriter {
+    font-size: 1.3em;
+  }
+  .carta {
+    font-size: 0.98em;
+    padding: 0.7em;
+  }
+  button {
+    font-size: 1em;
+    padding: .5em 1.2em;
+  }
+  .corazon-latiendo {
+    font-size: 2.2em;
+    bottom: 14px;
+    right: 18px;
+  }
+}
