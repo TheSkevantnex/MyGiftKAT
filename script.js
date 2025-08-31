@@ -48,4 +48,4 @@ function animate() {
 for (let i = 0; i < 40; i++) {
   hearts.push(createHeart());
 }
-animate();
+animate(); 
