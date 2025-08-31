@@ -1,44 +1,110 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Para ti Emily ❤️</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="container">
-    <h1 class="typewriter">Te amo, mi amor ❤️</h1>
-    <button onclick="mostrarRegalo()">Abrir un regalo 🎁</button>
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
 
-    <!-- Carta oculta -->
-    <div id="carta" class="carta oculto">
-      <h2>Para ti, Emily 💕</h2>
-      <p>
-        “Pienso que tú eres la perfección a la que aspiro, y aún deliro,<br>
-        y pierdo los papeles cada vez que vienes,<br>
-        y te acercas, aunque nunca tanto como para sentir cómo hueles.<br>
-        Y tu sabor, tu sabor es la mayor utopía,<br>
-        me quedo en la inopia pensando que algún día<br>
-        te podría conquistar con mi poesía.”  
-        <br><br>
-        <em>— Nach</em>
-      </p>
-      <p class="personal">
-        Emily, mi amor, quiero recordarte que eres especial para mí.  
-        Cada instante contigo es un regalo que ilumina mi vida.  
-        Nunca dudes de lo mucho que significas para mí, porque mi corazón late más fuerte solo al pensar en ti.  
-        Gracias por existir y ser mi mejor inspiración 💖.
-      </p>
-    </div>
-  </div>
+.container {
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+  max-width: 420px;
+  margin: 40px auto 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
 
-  <!-- Corazón grande latiendo -->
-  <div class="corazon-latiendo">❤️</div>
+h1.typewriter {
+  overflow: hidden;
+  border-right: .15em solid #ee9ca7;
+  white-space: nowrap;
+  margin: 0 auto 1em auto;
+  letter-spacing: .11em;
+  animation: typing 2.3s steps(22, end), blink-caret .5s step-end infinite;
+  font-size: 2em;
+  color: #ee9ca7;
+}
 
-  <!-- Lienzo para corazones flotando -->
-  <canvas id="corazones"></canvas> 
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ee9ca7; }
+}
 
-  <script src="script.js"></script>
-</body>
-</html>
+button {
+  background: linear-gradient(90deg, #ee9ca7 0%, #ffdde1 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 1.15em;
+  padding: .7em 2.2em;
+  cursor: pointer;
+  margin-bottom: 1.2em;
+  box-shadow: 0 4px 14px rgba(238,156,167,0.15);
+  transition: transform 0.18s;
+}
+button:hover {
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #ffdde1 0%, #ee9ca7 100%);
+}
+
+.carta {
+  background: #ffe4f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(238,156,167,0.18);
+  margin-top: 1.4em;
+  padding: 1.3em;
+  animation: aparecer 1.4s;
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.7);}
+  to { opacity: 1; transform: scale(1);}
+}
+.oculto {
+  display: none;
+}
+.carta h2 {
+  color: #ee9ca7;
+}
+.carta p {
+  color: #c44569;
+  font-size: 1.08em;
+}
+.carta .personal {
+  font-weight: bold;
+  color: #b91372;
+  margin-top: 1em;
+}
+
+.corazon-latiendo {
+  position: fixed;
+  bottom: 32px;
+  right: 38px;
+  font-size: 3.5em;
+  animation: latido .8s infinite;
+  pointer-events: none;
+  user-select: none;
+}
+@keyframes latido {
+  0%, 100% { transform: scale(1);}
+  20% { transform: scale(1.07);}
+  40% { transform: scale(0.95);}
+  60% { transform: scale(1.1);}
+  80% { transform: scale(0.97);}
+}
+
+canvas#corazones {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+  display: block;
+}
