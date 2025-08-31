@@ -1,57 +1,110 @@
-// Mostrar la carta al hacer clic
-function mostrarRegalo() {
-  const carta = document.getElementById("carta");
-  carta.classList.toggle("oculto");
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ffdde1 0%, #ee9ca7 100%);
+  font-family: 'Segoe UI', Arial, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
-// corazones flotando interactivos y bonitos
-const canvas = document.getElementById("corazones");
-const ctx = canvas.getContext("2d");
-
-function resizeCanvas() {
-  canvas.width = window.innerWidth;
-  canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
-
-let hearts = [];
-function drawHeart(x, y, size, color) {
-  ctx.save();
-  ctx.translate(x, y);
-  ctx.scale(size, size);
-  ctx.beginPath();
-  ctx.moveTo(0, -2);
-  ctx.bezierCurveTo(2, -4, 4, -2, 0, 2);
-  ctx.bezierCurveTo(-4, -2, -2, -4, 0, -2);
-  ctx.fillStyle = color;
-  ctx.shadowColor = "#ee9ca7";
-  ctx.shadowBlur = 7;
-  ctx.fill();
-  ctx.restore();
+.container {
+  background: rgba(255,255,255,0.85);
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.09);
+  max-width: 420px;
+  margin: 40px auto 0 auto;
+  padding: 2rem;
+  text-align: center;
 }
 
-function createHeart() {
-  return {
-    x: Math.random() * canvas.width,
-    y: canvas.height + 20,
-    size: Math.random() * 1.2 + 0.6,
-    speed: Math.random() * 2 + 1,
-    color: `hsl(${Math.random() * 360}, 70%, 80%)`
-  };
+h1.typewriter {
+  overflow: hidden;
+  border-right: .15em solid #ee9ca7;
+  white-space: nowrap;
+  margin: 0 auto 1em auto;
+  letter-spacing: .11em;
+  animation: typing 2.3s steps(22, end), blink-caret .5s step-end infinite;
+  font-size: 2em;
+  color: #ee9ca7;
 }
 
-function animate() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  hearts.forEach((heart, i) => {
-    drawHeart(heart.x, heart.y, heart.size, heart.color);
-    heart.y -= heart.speed;
-    if (heart.y < -10) hearts[i] = createHeart();
-  });
-  requestAnimationFrame(animate);
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+@keyframes blink-caret {
+  from, to { border-color: transparent }
+  50% { border-color: #ee9ca7; }
 }
 
-for (let i = 0; i < 40; i++) {
-  hearts.push(createHeart());
+button {
+  background: linear-gradient(90deg, #ee9ca7 0%, #ffdde1 100%);
+  color: #fff;
+  border: none;
+  border-radius: 24px;
+  font-size: 1.15em;
+  padding: .7em 2.2em;
+  cursor: pointer;
+  margin-bottom: 1.2em;
+  box-shadow: 0 4px 14px rgba(238,156,167,0.15);
+  transition: transform 0.18s;
 }
-animate();
+button:hover {
+  transform: scale(1.07);
+  background: linear-gradient(90deg, #ffdde1 0%, #ee9ca7 100%);
+}
+
+.carta {
+  background: #ffe4f1;
+  border-radius: 10px;
+  box-shadow: 0 4px 14px rgba(238,156,167,0.18);
+  margin-top: 1.4em;
+  padding: 1.3em;
+  animation: aparecer 1.4s;
+}
+@keyframes aparecer {
+  from { opacity: 0; transform: scale(0.7);}
+  to { opacity: 1; transform: scale(1);}
+}
+.oculto {
+  display: none;
+}
+.carta h2 {
+  color: #ee9ca7;
+}
+.carta p {
+  color: #c44569;
+  font-size: 1.08em;
+}
+.carta .personal {
+  font-weight: bold;
+  color: #b91372;
+  margin-top: 1em;
+}
+
+.corazon-latiendo {
+  position: fixed;
+  bottom: 32px;
+  right: 38px;
+  font-size: 3.5em;
+  animation: latido .8s infinite;
+  pointer-events: none;
+  user-select: none;
+}
+@keyframes latido {
+  0%, 100% { transform: scale(1);}
+  20% { transform: scale(1.07);}
+  40% { transform: scale(0.95);}
+  60% { transform: scale(1.1);}
+  80% { transform: scale(0.97);}
+}
+
+canvas#corazones {
+  position: fixed;
+  left: 0; top: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 10;
+  display: block;
+}
